@@ -4,18 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko E-commerce - Belanja Mudah</title>
+    
+    <!-- Hubungkan file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Menu Navigasi -->
-    <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="produk.html">Produk</a></li>
-        <li><a href="tentang.html">Tentang</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-    </ul>
+    <!-- Navbar dengan Flexbox -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">🏪 TokoEcom</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li>
+                    <div class="cart-icon" id="cartIcon">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h1>Selamat Datang di Toko E-commerce</h1>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Selamat Datang di Toko E-commerce</h1>
+        <p>Belanja mudah, aman, dan terpercaya dengan harga terbaik!</p>
+        <a href="produk.html" class="tombol-hero">Lihat Produk →</a>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <h3>Gratis Ongkir</h3>
+            <p>Minimal belanja Rp200.000</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔄</div>
+            <h3>Garansi 30 Hari</h3>
+            <p>Uang kembali jika tidak puas</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">💳</div>
+            <h3>Pembayaran Aman</h3>
+            <p>Berbagai metode pembayaran</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">⭐</div>
+            <h3>Member Discount</h3>
+            <p>Diskon khusus member</p>
+        </div>
+    </div>
 
     <h2>Tentang Toko Kami</h2>
     <p>Toko kami menyediakan berbagai produk berkualitas dengan harga terjangkau.</p>
@@ -31,6 +81,97 @@
         <li>Jaket Hoodie - Rp180.000</li>
         <li>Tas Ransel - Rp120.000</li>
     </ul>
+    
+    <!-- Link balik ke atas halaman -->
+    <p style="text-align: center;"><a href="#">⬆ Kembali ke atas</a></p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>TokoEcom</h3>
+                <p>Belanja mudah & terpercaya</p>
+            </div>
+            <div class="footer-section">
+                <h3>Informasi</h3>
+                <ul>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan Pelanggan</h3>
+                <ul>
+                    <li><a href="#">Cara Pembelian</a></li>
+                    <li><a href="#">Pengiriman</a></li>
+                    <li><a href="#">Pengembalian</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TokoEcom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="close-cart" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center;">Keranjang belanja kosong</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rp0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        // Smooth scroll untuk link "Kembali ke atas"
+        const backToTop = document.querySelector('a[href="#"]');
+        if (backToTop) {
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Update tahun dinamis di footer
+        const yearElement = document.querySelector('.footer-bottom p');
+        if (yearElement) {
+            const currentYear = new Date().getFullYear();
+            yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
+        }
+        
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        // Welcome message
+        setTimeout(() => {
+            console.log('🚀 Selamat datang di Toko E-commerce!');
+        }, 500);
+    </script>
+	
+	<!-- JavaScript Files -->
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Catatan: Urutan penting - cart.js dulu baru main.js -->
 
 </body>
 </html>

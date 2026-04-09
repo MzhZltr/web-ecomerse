@@ -4,21 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami - Toko E-commerce</title>
+    
+    <!-- Hubungkan file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="produk.html">Produk</a></li>
-        <li><a href="tentang.html">Tentang</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-    </ul>
+    <!-- Navbar dengan Flexbox -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">🏪 TokoEcom</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li>
+                    <div class="cart-icon" id="cartIcon">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <h1>Tentang Toko E-commerce</h1>
-
-    <!-- Foto profil toko -->
-    <img src="https://ui-avatars.com/api/?name=Toko+Ecom&background=0D8ABC&color=fff&size=128" 
-         alt="Logo Toko" width="128">
+    
+    <!-- KARTU PROFIL - Menerapkan Box Model -->
+    <div class="kartu-profil">
+        <img src="https://ui-avatars.com/api/?name=Toko+Ecom&background=1D9E75&color=fff&size=128&rounded=true" 
+             alt="Logo Toko" class="foto-profil">
+                
+        <h1>Toko E-commerce</h1>
+        <h2>Belanja Mudah & Terpercaya</h2>
+        <p>📍 Jakarta, Indonesia</p>
+        <p id="ratingDisplay">⭐ 4.9/5 dari 1000+ pelanggan</p>
+        
+        <div class="sosial-container">
+            <a href="mailto:cs@tokoecom.com" class="sosial-link">📧 Email</a>
+            <a href="https://wa.me/628123456789" target="_blank" class="sosial-link">📱 WhatsApp</a>
+            <a href="https://instagram.com/tokoecom" target="_blank" class="sosial-link">📷 Instagram</a>
+        </div>
+    </div>
 
     <h2>Visi Kami</h2>
     <p>Menjadi toko online terpercaya yang memberikan kemudahan belanja bagi seluruh masyarakat Indonesia.</p>
@@ -31,6 +66,26 @@
         <li>Pengiriman tepat waktu ke seluruh Indonesia</li>
     </ul>
 
+    <!-- Statistik dengan JavaScript -->
+    <h2>Statistik Kami</h2>
+    <div class="features" style="margin-top: 0;">
+        <div class="feature-item" id="statCustomer">
+            <div class="feature-icon">👥</div>
+            <h3 id="customerCount">0</h3>
+            <p>Pelanggan Puas</p>
+        </div>
+        <div class="feature-item" id="statProduct">
+            <div class="feature-icon">📦</div>
+            <h3 id="productCount">0</h3>
+            <p>Produk Terjual</p>
+        </div>
+        <div class="feature-item" id="statCity">
+            <div class="feature-icon">🏙️</div>
+            <h3 id="cityCount">0</h3>
+            <p>Kota Terjangkau</p>
+        </div>
+    </div>
+
     <h2>Hubungi Kami</h2>
     <p>Email: <a href="mailto:cs@tokoecom.com">cs@tokoecom.com</a></p>
     <p>WhatsApp: <a href="https://wa.me/628123456789" target="_blank">0812-3456-789</a></p>
@@ -38,6 +93,132 @@
 
     <!-- Link balik ke atas halaman -->
     <p><a href="#">⬆ Kembali ke atas</a></p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>TokoEcom</h3>
+                <p>Belanja mudah & terpercaya</p>
+            </div>
+            <div class="footer-section">
+                <h3>Informasi</h3>
+                <ul>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sosial Media</h3>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TokoEcom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="close-cart" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center;">Keranjang belanja kosong</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rp0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        // JavaScript untuk animasi statistik
+        function animateNumber(element, start, end, duration) {
+            let startTime = null;
+            
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const currentNumber = Math.floor(progress * (end - start) + start);
+                element.textContent = currentNumber.toLocaleString('id-ID');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            
+            requestAnimationFrame(animation);
+        }
+        
+        // Jalankan animasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            animateNumber(document.getElementById('customerCount'), 0, 15234, 2000);
+            animateNumber(document.getElementById('productCount'), 0, 45678, 2000);
+            animateNumber(document.getElementById('cityCount'), 0, 85, 2000);
+        });
+        
+        // Efek hover pada kartu profil
+        const profileCard = document.querySelector('.kartu-profil');
+        profileCard.addEventListener('mouseenter', () => {
+            profileCard.style.transform = 'scale(1.02)';
+            profileCard.style.transition = 'transform 0.3s ease';
+        });
+        profileCard.addEventListener('mouseleave', () => {
+            profileCard.style.transform = 'scale(1)';
+        });
+        
+        // Update rating secara dinamis
+        let rating = 4.9;
+        const ratingElement = document.getElementById('ratingDisplay');
+        setInterval(() => {
+            rating = (rating + 0.01).toFixed(1);
+            if (rating > 5.0) rating = 4.9;
+            ratingElement.innerHTML = `⭐ ${rating}/5 dari ${Math.floor(Math.random() * 500 + 1000)}+ pelanggan`;
+        }, 3000);
+        
+        // Update tahun dinamis di footer
+        const yearElementTentang = document.querySelector('.footer-bottom p');
+        if (yearElementTentang) {
+            const currentYear = new Date().getFullYear();
+            yearElementTentang.innerHTML = yearElementTentang.innerHTML.replace('2024', currentYear);
+        }
+        
+        // Smooth scroll untuk link "Kembali ke atas"
+        const backToTopTentang = document.querySelector('a[href="#"]');
+        if (backToTopTentang) {
+            backToTopTentang.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+	
+	<!-- JavaScript Files -->
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Catatan: Urutan penting - cart.js dulu baru main.js -->
 
 </body>
 </html>

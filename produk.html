@@ -4,38 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Produk - Toko E-commerce</title>
+    
+    <!-- Hubungkan file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Menu Navigasi (sama seperti index.html) -->
-    <ul>
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="produk.html">Produk</a></li>
-        <li><a href="tentang.html">Tentang</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-    </ul>
+    <!-- Navbar dengan Flexbox -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">🏪 TokoEcom</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="tentang.html">Tentang</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li>
+                    <div class="cart-icon" id="cartIcon">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <h1>Daftar Produk Kami</h1>
 
-    <!-- Produk 1 - Gambar bisa diklik -->
-    <h2>Sepatu Sport</h2>
-    <a href="https://example.com/sepatu" target="_blank">
-        <img src="https://picsum.photos/id/20/200/150" alt="Sepatu Sport" width="200">
-    </a>
-    <p>Harga: <strong>Rp250.000</strong></p>
-    <p>Ukuran: 38-44 | Warna: Hitam, Putih, Biru</p>
+    <!-- Filter Kategori -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="sepatu">Sepatu</button>
+        <button class="filter-btn" data-filter="jaket">Jaket</button>
+        <button class="filter-btn" data-filter="tas">Tas</button>
+        <button class="filter-btn" data-filter="aksesoris">Aksesoris</button>
+    </div>
 
-    <!-- Produk 2 -->
-    <h2>Jaket Hoodie</h2>
-    <img src="https://picsum.photos/id/26/200/150" alt="Jaket Hoodie" width="200">
-    <p>Harga: <strong>Rp180.000</strong></p>
-    <p>Bahan: Katun premium | Tersedia 5 warna</p>
+    <!-- Grid Produk dengan Flexbox -->
+    <div class="container-produk" id="produkContainer">
+        
+        <!-- Produk 1 - Sepatu -->
+        <div class="kartu-produk" data-kategori="sepatu">
+            <div class="produk-badge">Best Seller</div>
+            <img src="https://picsum.photos/id/20/300/200" alt="Sepatu Sport">
+            <h3>Sepatu Sport</h3>
+            <div class="harga">Rp250.000</div>
+            <div class="harga-asli">Rp350.000</div>
+            <div class="deskripsi-singkat">Ukuran: 38-44 | Warna: Hitam, Putih, Biru</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (128)</div>
+            <button class="tombol-beli" data-nama="Sepatu Sport" data-harga="250000">Beli Sekarang</button>
+        </div>
 
-    <!-- Produk 3 -->
-    <h2>Tas Ransel</h2>
-    <img src="https://picsum.photos/id/30/200/150" alt="Tas Ransel" width="200">
-    <p>Harga: <strong>Rp120.000</strong></p>
-    <p>Kapasitas 20L | Anti air</p>
+        <!-- Produk 2 - Jaket -->
+        <div class="kartu-produk" data-kategori="jaket">
+            <img src="https://picsum.photos/id/26/300/200" alt="Jaket Hoodie">
+            <h3>Jaket Hoodie</h3>
+            <div class="harga">Rp180.000</div>
+            <div class="deskripsi-singkat">Bahan: Katun premium | Tersedia 5 warna</div>
+            <div class="rating">⭐⭐⭐⭐ (89)</div>
+            <button class="tombol-beli" data-nama="Jaket Hoodie" data-harga="180000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 3 - Tas -->
+        <div class="kartu-produk" data-kategori="tas">
+            <div class="produk-badge">Diskon 20%</div>
+            <img src="https://picsum.photos/id/30/300/200" alt="Tas Ransel">
+            <h3>Tas Ransel</h3>
+            <div class="harga">Rp120.000</div>
+            <div class="harga-asli">Rp150.000</div>
+            <div class="deskripsi-singkat">Kapasitas 20L | Anti air</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (234)</div>
+            <button class="tombol-beli" data-nama="Tas Ransel" data-harga="120000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 4 - Aksesoris -->
+        <div class="kartu-produk" data-kategori="aksesoris">
+            <img src="https://picsum.photos/id/28/300/200" alt="Topi Baseball">
+            <h3>Topi Baseball</h3>
+            <div class="harga">Rp75.000</div>
+            <div class="deskripsi-singkat">Bahan denim | Adjustable strap</div>
+            <div class="rating">⭐⭐⭐⭐ (56)</div>
+            <button class="tombol-beli" data-nama="Topi Baseball" data-harga="75000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 5 - Aksesoris -->
+        <div class="kartu-produk" data-kategori="aksesoris">
+            <img src="https://picsum.photos/id/34/300/200" alt="Kacamata Hitam">
+            <h3>Kacamata Hitam</h3>
+            <div class="harga">Rp95.000</div>
+            <div class="deskripsi-singkat">UV Protection | Unisex</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (167)</div>
+            <button class="tombol-beli" data-nama="Kacamata Hitam" data-harga="95000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 6 - Aksesoris -->
+        <div class="kartu-produk" data-kategori="aksesoris">
+            <img src="https://picsum.photos/id/36/300/200" alt="Jam Tangan">
+            <h3>Jam Tangan Sport</h3>
+            <div class="harga">Rp350.000</div>
+            <div class="deskripsi-singkat">Water resistant | Digital display</div>
+            <div class="rating">⭐⭐⭐⭐ (92)</div>
+            <button class="tombol-beli" data-nama="Jam Tangan Sport" data-harga="350000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 7 - Sepatu -->
+        <div class="kartu-produk" data-kategori="sepatu">
+            <img src="https://picsum.photos/id/42/300/200" alt="Sepatu Formal">
+            <h3>Sepatu Formal Pria</h3>
+            <div class="harga">Rp320.000</div>
+            <div class="deskripsi-singkat">Bahan kulit sintetis | Ukuran 39-45</div>
+            <div class="rating">⭐⭐⭐⭐ (45)</div>
+            <button class="tombol-beli" data-nama="Sepatu Formal" data-harga="320000">Beli Sekarang</button>
+        </div>
+
+        <!-- Produk 8 - Jaket -->
+        <div class="kartu-produk" data-kategori="jaket">
+            <div class="produk-badge">New Arrival</div>
+            <img src="https://picsum.photos/id/44/300/200" alt="Jaket Bomber">
+            <h3>Jaket Bomber</h3>
+            <div class="harga">Rp210.000</div>
+            <div class="deskripsi-singkat">Bahan parasut | Tahan angin</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (203)</div>
+            <button class="tombol-beli" data-nama="Jaket Bomber" data-harga="210000">Beli Sekarang</button>
+        </div>
+    </div>
 
     <hr>
 
@@ -47,6 +146,113 @@
         <li>Lakukan pembayaran</li>
         <li>Barang akan dikirim ke alamat Anda</li>
     </ol>
+    
+    <!-- Link balik ke atas halaman -->
+    <p style="text-align: center;"><a href="#">⬆ Kembali ke atas</a></p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>TokoEcom</h3>
+                <p>Belanja mudah & terpercaya</p>
+            </div>
+            <div class="footer-section">
+                <h3>Informasi</h3>
+                <ul>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan Pelanggan</h3>
+                <ul>
+                    <li><a href="#">Cara Pembelian</a></li>
+                    <li><a href="#">Pengiriman</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TokoEcom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Belanja</h3>
+            <button class="close-cart" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center;">Keranjang belanja kosong</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rp0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        // Smooth scroll untuk link "Kembali ke atas"
+        const backToTop = document.querySelector('a[href="#"]');
+        if (backToTop) {
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Update tahun dinamis di footer
+        const yearElement = document.querySelector('.footer-bottom p');
+        if (yearElement) {
+            const currentYear = new Date().getFullYear();
+            yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
+        }
+        
+        // Hamburger menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+        
+        // Filter produk
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const produkCards = document.querySelectorAll('.kartu-produk');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                produkCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.kategori === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        console.log('🛍️ Halaman produk siap!');
+    </script>
+	
+	<!-- JavaScript Files -->
+<script src="js/cart.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Catatan: Urutan penting - cart.js dulu baru main.js -->
 
 </body>
 </html>
